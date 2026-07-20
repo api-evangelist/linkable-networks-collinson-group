@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://linkablenetworks.com/appweb-developers/
+docs: https://linkablenetworks.com/appweb-developers/
+api: MyLinkables Consumer API
+base_url: https://api.mylinkables.com
+summary: >-
+  The MyLinkables Consumer API authenticates with OAuth 2.0, specifically the Resource Owner Password
+  Credentials grant described in RFC 6749 section 4.3. The provider states "if you know REST and OAuth you
+  know our API". Credentials are not self-service: partners request API documentation and credentials by
+  email from Linkable Networks. No token, authorize or introspection endpoint is published publicly, and
+  the host serves no OAuth or OpenID discovery document.
+schemes:
+- id: oauth2_password
+  type: oauth2
+  flow: password
+  spec: RFC 6749 section 4.3 (Resource Owner Password Credentials Grant)
+  documented: true
+  evidence: >-
+    "Authentication Method: OAuth 2.0 (Specifically the API supports OAuth's Resource Owner Password
+    Credentials as described in section 4.3.)"
+  token_url: null
+  token_url_note: Not published on any public Linkable Networks or MyLinkables surface.
+  scopes: []
+  scopes_note: >-
+    No scope reference is published. Authorization appears to be partner-tier based rather than
+    scope-based - adding and updating payment cards is limited to PCI-compliant partners.
+credential_issuance:
+  self_service: false
+  method: email request
+  evidence: >-
+    "Send us an email with your contact information and we'll send along our API documentation and your
+    credentials."
+  contact_page: https://linkablenetworks.com/contact/
+discovery:
+  openid_configuration: 404
+  oauth_authorization_server: 404
+  note: Probed 2026-07-19 against https://api.mylinkables.com - neither discovery document is served.
+observed:
+  probed: '2026-07-19'
+  note: >-
+    Unauthenticated GET against the documented consumerapi paths returns HTTP 403 with a page titled
+    "consumerapi.accessdenied.title", confirming the endpoints exist and are auth-gated. Undocumented
+    paths on the same host return 404.
+  response_headers:
+    strict_transport_security: max-age=31536000; includeSubDomains; preload
+    x_content_type_options: nosniff
+    x_frame_options: SAMEORIGIN
+    access_control_allow_origin: '*'
+    access_control_allow_credentials: 'true'
+gaps:
+- No public token endpoint or OAuth discovery document.
+- No published scope or permission reference.
+- Resource Owner Password Credentials is deprecated by OAuth 2.0 Security Best Current Practice (RFC 9700)
+  and removed from OAuth 2.1; no alternative grant (authorization code + PKCE, client credentials) is
+  documented.
+- Documentation is gated behind an email request, so the authentication contract cannot be fully verified.
