@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+source: public package registry search
+summary: >-
+  No first-party client libraries or SDKs were found for Linkable Networks, MyLinkables or Collinson
+  Group. The developer page offers no SDK downloads and links to no source repositories - integration is
+  described as hand-rolled REST plus OAuth. No SDKs pointer is emitted in apis.yml because no official
+  client library exists.
+registries_searched:
+- registry: npm
+  query:
+  - linkable networks
+  - collinson
+  result: no first-party packages (npm text search for "collinson" returns zero results)
+- registry: pypi
+  query:
+  - linkable-networks
+  - collinson
+  result: 404 for both
+- registry: github
+  query:
+  - github.com/linkablenetworks
+  - github.com/collinsongroup
+  result: >-
+    linkablenetworks does not exist (404); collinsongroup exists but is named "Collinson Group - Legacy"
+    and has zero public repositories
+- registry: maven-central
+  query: collinson
+  result: 0 results (solrsearch)
+- registry: nuget
+  query: collinson
+  result: 0 total hits
+- registry: rubygems
+  query:
+  - linkable networks
+  - collinson
+  result: empty result set for both
+- registry: packagist
+  query: collinson
+  result: no matching packages (only fuzzy "collision" name matches returned)
+- registry: crates.io
+  query: collinson
+  result: 0 crates
+packages: []

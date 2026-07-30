@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://linkablenetworks.com/appweb-developers/
+api: MyLinkables Consumer API
+summary: >-
+  Versioning and lifecycle posture for the MyLinkables Consumer API. The provider publishes a version
+  number and nothing else - no changelog, no deprecation policy, no sunset commitments, no SLA and no
+  status page. No StatusPage or Deprecation pointer is emitted in apis.yml because neither exists.
+versioning:
+  scheme: whole-API version number
+  current_version: '1.0'
+  evidence: '"Current API Version 1.0"'
+  source: https://linkablenetworks.com/appweb-developers/
+  version_in_path: false
+  version_in_header: unknown
+  version_history: []
+  version_history_note: No prior or subsequent versions are documented anywhere on the public site.
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation or sunset policy is published, and no Deprecation or Sunset headers were observed on
+    the production host. Consumers have no documented notice period for breaking changes.
+changelog:
+  published: false
+  note: >-
+    No dated changelog, release notes or API news feed exists on linkablenetworks.com. The developer page
+    itself carries a "Copyright 2013" footer, and the site's news link is broken (points to /). No
+    changelog/ artifact was created.
+status_page:
+  published: false
+  probed:
+  - url: https://status.collinsongroup.com/
+    status: unreachable (DNS)
+  note: No status or uptime page was found for linkablenetworks.com, mylinkables.com or collinsongroup.com.
+sla:
+  published: false
+  note: No uptime, latency or support-response SLA is published on any public surface.
+support:
+  channel: email / contact form
+  url: https://linkablenetworks.com/contact/
+  note: >-
+    API documentation and credentials are also issued through this channel - "Send us an email with your
+    contact information and we'll send along our API documentation and your credentials."
+maturity_assessment:
+  state: legacy / maintained-but-unpromoted
+  evidence:
+  - Production API host api.mylinkables.com is live and answering, with modern transport security (HSTS
+    with preload) and every documented consumerapi path returning 403 rather than 404.
+  - The public developer page is unchanged since at least 2013 and describes API version 1.0.
+  - The marketing site is an unmaintained WordPress install carrying injected third-party SEO link-spam in
+    its navigation and footer, and its News and Terms of Service links are broken.
+  - The consumer property www.mylinkables.com now serves only a redirect to a /lander page.
+  - The associated GitHub organization (github.com/collinsongroup) is named "Collinson Group - Legacy" and
+    has zero public repositories.
+  probed: '2026-07-19'

@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probe
+summary: >-
+  No .well-known discovery surface is published on any Linkable Networks, MyLinkables or Collinson Group
+  host. Every path probed returned 404 (or a locale redirect to a 404). Recorded as a valid empty result -
+  no WellKnown or SecurityTxt pointer is emitted in apis.yml because nothing is served.
+hosts:
+- host: https://api.mylinkables.com
+  role: production API host
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://linkablenetworks.com
+  role: marketing and developer site
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: 301 redirect to trailing-slash variant, then 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: 301 redirect to trailing-slash variant, then 404
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 301 redirect to trailing-slash variant, then 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://www.collinsongroup.com
+  role: parent company site
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 307 redirect to /en-GB/.well-known/security.txt, then 404
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 307 redirect to /en-GB/.well-known/api-catalog, then 404
+  - path: /llms.txt
+    status: 404
+    note: 307 redirect to /en-GB/llms.txt, then 404
+files: []

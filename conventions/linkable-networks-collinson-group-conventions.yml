@@ -1,0 +1,110 @@
+generated: '2026-07-19'
+method: searched
+source: https://linkablenetworks.com/appweb-developers/
+docs: https://linkablenetworks.com/appweb-developers/
+api: MyLinkables Consumer API
+base_url: https://api.mylinkables.com
+summary: >-
+  Cross-cutting runtime semantics for the MyLinkables Consumer API, captured from the provider's public
+  developer page and from live unauthenticated probes of the production host. The public surface is thin -
+  the full reference is gated behind an email request - so several conventions below are recorded as
+  unknown rather than guessed.
+auth:
+  style: oauth2
+  flow: password (RFC 6749 section 4.3)
+  transport: Authorization header (assumed bearer; not explicitly documented)
+  detail: authentication/linkable-networks-collinson-group-authentication.yml
+media_types:
+  request: unknown
+  response:
+  - application/json
+  - application/xml
+  evidence: '"Available Response Formats: JSON and XML"'
+  negotiation: unknown
+  negotiation_note: >-
+    The provider states both formats are available but does not document whether selection is by Accept
+    header, a format query parameter, or a path suffix.
+resource_style:
+  pattern: REST, resource-per-path under a single consumerapi/ prefix
+  paths:
+  - consumerapi/consumer
+  - consumerapi/offers/available
+  - consumerapi/offers/linked
+  - consumerapi/offers/redeemed
+  - consumerapi/offers/reserved
+  - consumerapi/accounts
+  - consumerapi/accounts/${accountToken}
+  verbs_used:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+  identifier_style: opaque token in path (accountToken)
+  evidence: >-
+    Endpoint list and HTTP verbs taken verbatim from the Developers/Publishers page; the production host
+    returns 403 (not 404) for each documented path, confirming they exist.
+versioning:
+  scheme: whole-API version number
+  current: '1.0'
+  in_path: false
+  in_header: unknown
+  evidence: '"Current API Version 1.0"'
+  detail: lifecycle/linkable-networks-collinson-group-lifecycle.yml
+idempotency:
+  supported: false
+  documented: false
+  note: >-
+    No idempotency key header, no retry-safety guidance and no request-deduplication semantics are
+    published. Consumer creation (POST consumerapi/consumer) and card add/update carry replay risk with no
+    documented mitigation. Recorded as a gap - no Idempotency pointer is emitted in apis.yml because the
+    provider does not support it.
+pagination:
+  supported: unknown
+  note: >-
+    The offers collections (available/linked/redeemed/reserved) are list endpoints, but no page, cursor,
+    limit or offset parameter is documented on the public page.
+filtering:
+  supported: partial
+  note: >-
+    Offer filtering is expressed as separate paths per offer state rather than as query parameters. A
+    dedicated endpoint is called out for simply displaying the AVAILABLE offer list in a mobile app or
+    website.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_tracing:
+  request_id_header: unknown
+  note: No correlation or request-id header is documented; none observed on 403 responses.
+errors:
+  envelope: unknown
+  problem_json: false
+  observed: >-
+    Unauthenticated requests return HTTP 403 with an HTML body (Content-Type text/html;charset=ISO-8859-1)
+    whose title is the untranslated message key "consumerapi.accessdenied.title" - an HTML error page, not
+    a machine-readable error envelope. No error-code reference is published, so no errors/ artifact was
+    derived.
+rate_limiting:
+  documented: false
+  headers_observed: none
+  note: No rate-limit policy or signaling headers are published or observed.
+cors:
+  enabled: true
+  observed:
+    access_control_allow_origin: '*'
+    access_control_allow_methods: '*'
+    access_control_allow_headers: '*'
+    access_control_allow_credentials: 'true'
+    access_control_max_age: '86400'
+  note: >-
+    Observed 2026-07-19 on https://api.mylinkables.com. A wildcard origin combined with
+    allow-credentials is a permissive configuration worth flagging in any review.
+transport_security:
+  https_only: true
+  hsts: max-age=31536000; includeSubDomains; preload
+  detail: security/linkable-networks-collinson-group-domain-security.yml
+partner_tiers:
+  note: >-
+    Adding and updating payment cards is restricted to PCI-compliant partners; other operations are
+    available to all credentialed partners. This is the only authorization tiering documented.
+  detail: conformance/linkable-networks-collinson-group-conformance.yml

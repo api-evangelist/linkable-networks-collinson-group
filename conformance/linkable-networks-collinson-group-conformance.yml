@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://linkablenetworks.com/appweb-developers/
+api: MyLinkables Consumer API
+summary: >-
+  Standards and cross-cutting conformance asserted for the MyLinkables Consumer API, based on the
+  provider's public developer page and live probes. Linkable Networks publishes no trust center, no
+  certification list and no audit reports, so no Compliance pointer is emitted in apis.yml.
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    Developer page states "Authentication Method: OAuth 2.0 (Specifically the API supports OAuth's
+    Resource Owner Password Credentials as described in section 4.3.)"
+  source: https://linkablenetworks.com/appweb-developers/
+- id: rfc9700
+  name: OAuth 2.0 Security Best Current Practice (RFC 9700)
+  conforms: false
+  evidence: >-
+    The only documented grant is Resource Owner Password Credentials, which RFC 9700 says MUST NOT be
+    used and which is removed from OAuth 2.1. No authorization code + PKCE or client credentials flow is
+    documented.
+  source: https://linkablenetworks.com/appweb-developers/
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on api.mylinkables.com (probed 2026-07-19).
+- id: oauth_discovery
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on api.mylinkables.com (probed 2026-07-19).
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    Error responses observed on the production host are HTML (Content-Type text/html;charset=ISO-8859-1),
+    not application/problem+json.
+- id: rfc9116
+  name: security.txt (RFC 9116)
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all three company hosts (probed 2026-07-19).
+- id: rfc8594
+  name: Sunset header / deprecation signaling (RFC 8594)
+  conforms: false
+  evidence: No deprecation or sunset policy is published; no Sunset or Deprecation headers observed.
+- id: openapi
+  name: OpenAPI specification published
+  conforms: false
+  evidence: >-
+    No specification is served at /swagger.json, /openapi.json, /v2/api-docs or /swagger-ui.html on
+    api.mylinkables.com (all 404, probed 2026-07-19), and none is linked from the developer page.
+- id: pci_dss
+  name: PCI DSS
+  conforms: unknown
+  evidence: >-
+    The developer page conditions card add/update operations on partner PCI compliance - "Please note,
+    adding and updating cards is only available to PCI-Compliant partners" - which implies the platform
+    operates inside a PCI context, but Linkable Networks publishes no PCI attestation, AOC or compliance
+    page of its own. Recorded as a partner requirement, not a published certification.
+  source: https://linkablenetworks.com/appweb-developers/
+- id: idempotency
+  name: Idempotent write semantics
+  conforms: false
+  evidence: No idempotency key or retry-safety guidance is published for POST/PUT operations.
+- id: pagination
+  name: Documented collection pagination
+  conforms: false
+  evidence: No page, cursor, limit or offset parameters are documented for the offers collections.
+certifications: []
+certifications_note: >-
+  No certification (SOC 2, ISO 27001, PCI DSS AOC, HIPAA, FedRAMP) is published by Linkable Networks. No
+  trust center exists at trust.* or security.* on either linkablenetworks.com or collinsongroup.com.

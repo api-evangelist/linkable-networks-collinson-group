@@ -1,0 +1,103 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://linkablenetworks.com/appweb-developers/
+summary: >-
+  No official or hosted MCP server is published by Linkable Networks, MyLinkables or Collinson Group. This
+  is a CANDIDATE tool surface derived from the endpoints the provider documents verbatim on its
+  Developers/Publishers page and confirmed to exist (HTTP 403 rather than 404) on the production host. It
+  is a proposal for what an MCP server over this API would expose - it is not a running server, and the
+  request/response schemas are unknown because the full reference is gated behind an email request.
+server:
+  name: mylinkables
+  transport: http
+  url: null
+  published: false
+api: MyLinkables Consumer API
+base_url: https://api.mylinkables.com
+auth:
+  type: oauth2
+  flow: password
+  detail: authentication/linkable-networks-collinson-group-authentication.yml
+tools:
+- name: create_consumer
+  description: Register a new consumer on the MyLinkables platform.
+  method: POST
+  path: consumerapi/consumer
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: write
+- name: get_consumer
+  description: Retrieve the authenticated consumer record.
+  method: GET
+  path: consumerapi/consumer
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: opt_out_consumer
+  description: Opt a consumer out of MyLinkables.
+  method: DELETE
+  path: consumerapi/consumer
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: destructive
+- name: list_available_offers
+  description: List card-linked offers available to the consumer. The provider notes a dedicated endpoint
+    for simply displaying available offers in a mobile app or on a website.
+  method: GET
+  path: consumerapi/offers/available
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: list_linked_offers
+  description: List offers the consumer has linked to a payment card.
+  method: GET
+  path: consumerapi/offers/linked
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: list_redeemed_offers
+  description: List offers the consumer has redeemed.
+  method: GET
+  path: consumerapi/offers/redeemed
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: list_reserved_offers
+  description: List offers reserved for the consumer.
+  method: GET
+  path: consumerapi/offers/reserved
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: list_accounts
+  description: List the payment card accounts the consumer can link offers to.
+  method: GET
+  path: consumerapi/accounts
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: read
+- name: add_account
+  description: Add a payment card the consumer can link offers to. Restricted to PCI-compliant partners.
+  method: POST
+  path: consumerapi/accounts
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: write
+  restriction: PCI-compliant partners only
+  path_note: >-
+    The developer page names the ADD and UPDATE operations but does not print their paths or verbs; the
+    collection path is inferred from the documented LIST and REMOVE paths and is unverified.
+- name: update_account
+  description: Update a linked payment card. Restricted to PCI-compliant partners.
+  method: PUT
+  path: consumerapi/accounts/${accountToken}
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: write
+  restriction: PCI-compliant partners only
+  path_note: >-
+    Verb and path inferred from the documented REMOVE path; the developer page does not print them.
+- name: remove_account
+  description: Remove a payment card from the consumer's linked accounts.
+  method: DELETE
+  path: consumerapi/accounts/${accountToken}
+  source: https://linkablenetworks.com/appweb-developers/
+  consequence: destructive
+gaps:
+- No OpenAPI or other machine-readable specification is published, so no tool input or output schemas can
+  be derived. A real MCP server would need the emailed reference to define parameters.
+- The ADD and UPDATE account operations are named but their verbs and paths are not printed; those two
+  entries are inferred and flagged.
+- Handling personal data and payment card references, this surface would need consent and escalation
+  controls before any agent-facing exposure.
