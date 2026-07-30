@@ -1,24 +1,125 @@
 aid: linkable-networks-collinson-group
 name: Linkable Networks (Collinson Group)
-description: 'Linkable Networks (Collinson Group) is a company surfaced as a portfolio company of bain-capital-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: 'Linkable Networks, Inc. is a Boston-based card-linked-offers (CLO) and SKU-linked-offers platform
+  that lets consumers attach digital offers directly to the credit and debit cards already in their wallet.
+  When a linked card is used for a qualifying purchase on the Visa, MasterCard, American Express or PayPal
+  rails, the Linkable platform receives the transaction, optionally confirms item-level detail through the
+  on-premises Linkable SKU Matcher, and delivers the savings back to the cardholder as a statement credit,
+  eGift, points or miles - with no POS integration, no additional hardware or software, no punch cards and
+  no employee training. The company sells to brands and retailers (product/SKU-level promotions funded with
+  trade and co-op dollars), to loyalty program operators (single-purchase, multi-visit and aggregate-spend
+  reward mechanics layered on an existing program), and to publishers and app developers, who integrate the
+  consumer-facing MyLinkables REST API to display offers, link them to a cardholder, register consumers,
+  manage linked payment accounts and track redemption. Linkable Networks is associated with the Collinson
+  Group, the privately-owned global travel, loyalty and insurance operator behind Priority Pass, and was
+  surfaced through the Bain Capital Ventures portfolio.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://linkablenetworks.com/wp-content/themes/linkablenetworks/library/images/svg/logo-mark.svg
 url: https://raw.githubusercontent.com/api-evangelist/linkable-networks-collinson-group/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bain-capital-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: legacy
+x-tier-reason: 'Live production API host (api.mylinkables.com) with an auth-gated, documented REST surface,
+  but the public developer page is dated "Copyright 2013", the marketing site is an unmaintained WordPress
+  install carrying injected SEO link-spam, and API documentation is gated behind an email request.'
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Fintech
-apis: []
+- Card Linked Offers
+- Loyalty
+- Payments
+- Rewards
+- Advertising
+- Retail
+apis:
+- aid: linkable-networks-collinson-group:mylinkables-consumer-api
+  name: MyLinkables Consumer API
+  description: 'RESTful consumer API for building applications on top of the Linkable card-linked-offer
+    platform. Per the provider developer page it exposes consumer registration, view and opt-out
+    (consumerapi/consumer); offer retrieval by state - available, linked, redeemed and reserved
+    (consumerapi/offers/*); and listing, adding, updating and removing the payment cards an offer is linked
+    to (consumerapi/accounts). Adding and updating cards is restricted to PCI-compliant partners.
+    Authentication is OAuth 2.0 Resource Owner Password Credentials (RFC 6749 section 4.3); responses are
+    available as JSON or XML; current version 1.0. Documentation and credentials are issued on request by
+    email - no public reference or machine-readable specification is published.'
+  humanURL: https://linkablenetworks.com/appweb-developers/
+  baseURL: https://api.mylinkables.com
+  tags:
+  - Card Linked Offers
+  - Offers
+  - Loyalty
+  - Payments
+  properties:
+  - type: Documentation
+    url: https://linkablenetworks.com/appweb-developers/
+  - type: Authentication
+    url: authentication/linkable-networks-collinson-group-authentication.yml
+  - type: Conventions
+    url: conventions/linkable-networks-collinson-group-conventions.yml
+  - type: MCPServer
+    url: mcp/linkable-networks-collinson-group-mcp.yml
+common:
+- type: DomainSecurity
+  url: security/linkable-networks-collinson-group-domain-security.yml
+- type: Website
+  url: https://linkablenetworks.com/
+- type: Website
+  url: https://www.collinsongroup.com/en-GB
+- type: DeveloperPortal
+  url: https://linkablenetworks.com/appweb-developers/
+- type: Documentation
+  url: https://linkablenetworks.com/appweb-developers/
+- type: Login
+  url: https://www.mylinkables.com/
+- type: Support
+  url: https://linkablenetworks.com/contact/
+- type: PrivacyPolicy
+  url: https://linkablenetworks.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/collinsongroup
+- type: Blog
+  url: https://www.collinsongroup.com/en-GB/insights
+- type: Twitter
+  url: https://twitter.com/linkables
+- type: Facebook
+  url: https://www.facebook.com/pages/Linkable-Networks/300275889988840
+- type: Authentication
+  url: authentication/linkable-networks-collinson-group-authentication.yml
+- type: Conventions
+  url: conventions/linkable-networks-collinson-group-conventions.yml
+- type: Conformance
+  url: conformance/linkable-networks-collinson-group-conformance.yml
+- type: Lifecycle
+  url: lifecycle/linkable-networks-collinson-group-lifecycle.yml
+- type: MCPServer
+  url: mcp/linkable-networks-collinson-group-mcp.yml
+- type: LLMsTxt
+  url: llms/linkable-networks-collinson-group-llms.txt
+- type: Packages
+  url: packages/linkable-networks-collinson-group-packages.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
