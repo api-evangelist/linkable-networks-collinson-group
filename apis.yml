@@ -35,7 +35,7 @@ x-tier: legacy
 x-tier-reason: 'Live production API host (api.mylinkables.com) with an auth-gated, documented REST surface,
   but the public developer page is dated "Copyright 2013", the marketing site is an unmaintained WordPress
   install carrying injected SEO link-spam, and API documentation is gated behind an email request.'
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
