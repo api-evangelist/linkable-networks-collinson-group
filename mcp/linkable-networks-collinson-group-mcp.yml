@@ -2,12 +2,11 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: https://linkablenetworks.com/appweb-developers/
-summary: >-
-  No official or hosted MCP server is published by Linkable Networks, MyLinkables or Collinson Group. This
-  is a CANDIDATE tool surface derived from the endpoints the provider documents verbatim on its
-  Developers/Publishers page and confirmed to exist (HTTP 403 rather than 404) on the production host. It
-  is a proposal for what an MCP server over this API would expose - it is not a running server, and the
-  request/response schemas are unknown because the full reference is gated behind an email request.
+summary: No official or hosted MCP server is published by Linkable Networks, MyLinkables or Collinson
+  Group. This is a CANDIDATE tool surface derived from the endpoints the provider documents verbatim on
+  its Developers/Publishers page and confirmed to exist (HTTP 403 rather than 404) on the production host.
+  It is a proposal for what an MCP server over this API would expose - it is not a running server, and
+  the request/response schemas are unknown because the full reference is gated behind an email request.
 server:
   name: mylinkables
   transport: http
@@ -76,9 +75,8 @@ tools:
   source: https://linkablenetworks.com/appweb-developers/
   consequence: write
   restriction: PCI-compliant partners only
-  path_note: >-
-    The developer page names the ADD and UPDATE operations but does not print their paths or verbs; the
-    collection path is inferred from the documented LIST and REMOVE paths and is unverified.
+  path_note: The developer page names the ADD and UPDATE operations but does not print their paths or
+    verbs; the collection path is inferred from the documented LIST and REMOVE paths and is unverified.
 - name: update_account
   description: Update a linked payment card. Restricted to PCI-compliant partners.
   method: PUT
@@ -86,8 +84,8 @@ tools:
   source: https://linkablenetworks.com/appweb-developers/
   consequence: write
   restriction: PCI-compliant partners only
-  path_note: >-
-    Verb and path inferred from the documented REMOVE path; the developer page does not print them.
+  path_note: Verb and path inferred from the documented REMOVE path; the developer page does not print
+    them.
 - name: remove_account
   description: Remove a payment card from the consumer's linked accounts.
   method: DELETE
@@ -95,9 +93,15 @@ tools:
   source: https://linkablenetworks.com/appweb-developers/
   consequence: destructive
 gaps:
-- No OpenAPI or other machine-readable specification is published, so no tool input or output schemas can
-  be derived. A real MCP server would need the emailed reference to define parameters.
+- No OpenAPI or other machine-readable specification is published, so no tool input or output schemas
+  can be derived. A real MCP server would need the emailed reference to define parameters.
 - The ADD and UPDATE account operations are named but their verbs and paths are not printed; those two
   entries are inferred and flagged.
-- Handling personal data and payment card references, this surface would need consent and escalation
-  controls before any agent-facing exposure.
+- Handling personal data and payment card references, this surface would need consent and escalation controls
+  before any agent-facing exposure.
+deployment:
+  mode: none
+  verified: derived
+  tools: 11
+  checked: '2026-08-12'
+  source: catalog MCP census
