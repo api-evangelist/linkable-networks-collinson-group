@@ -13,6 +13,17 @@ description: 'Linkable Networks, Inc. is a Boston-based card-linked-offers (CLO)
   manage linked payment accounts and track redemption. Linkable Networks is associated with the Collinson
   Group, the privately-owned global travel, loyalty and insurance operator behind Priority Pass, and was
   surfaced through the Bain Capital Ventures portfolio.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
