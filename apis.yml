@@ -52,7 +52,7 @@ modified: '2026-07-19'
 tags:
 - Company
 - Fintech
-- Card Linked Offers
+- Card-Linked Offers
 - Loyalty
 - Payments
 - Rewards
@@ -81,7 +81,7 @@ apis:
   humanURL: https://linkablenetworks.com/appweb-developers/
   baseURL: https://api.mylinkables.com
   tags:
-  - Card Linked Offers
+  - Card-Linked Offers
   - Offers
   - Loyalty
   - Payments
