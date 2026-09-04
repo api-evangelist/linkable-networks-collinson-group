@@ -34,6 +34,7 @@ accessModel:
   confidence: medium
   source:
   - authentication
+  - {url: 'https://linkablenetworks.com/', status: 308, note: 'declared website redirects to https://www.absolute-sway.com/ — a different registrable domain (linkablenetworks.com -> absolute-sway.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
   generated: '2026-07-22'
   method: derived
 image: https://linkablenetworks.com/wp-content/themes/linkablenetworks/library/images/svg/logo-mark.svg
@@ -97,8 +98,9 @@ apis:
     url: authentication/linkable-networks-collinson-group-authentication.yml
   - type: Conventions
     url: conventions/linkable-networks-collinson-group-conventions.yml
-  - type: MCPServer
+  - type: X-MCPServerCandidate
     url: mcp/linkable-networks-collinson-group-mcp.yml
+    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 common:
 - type: DomainSecurity
   url: security/linkable-networks-collinson-group-domain-security.yml
@@ -132,8 +134,9 @@ common:
   url: conformance/linkable-networks-collinson-group-conformance.yml
 - type: Lifecycle
   url: lifecycle/linkable-networks-collinson-group-lifecycle.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/linkable-networks-collinson-group-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/linkable-networks-collinson-group-llms.txt
 - type: Packages
